@@ -1,6 +1,9 @@
 # flutter_weather
 
-A new Flutter application.
+Простое приложение Погоды.
+Использует [metaweather api](https://www.metaweather.com/api/) и шаблон проектирования BLoC
+- [Tutorial](https://bloclibrary.dev/#/flutterweathertutorial)
+- [Add caching bloc state](https://medium.com/flutter-community/caching-bloc-state-with-hydrated-bloc-e565f81520a4)
 
 ## Getting Started
 
