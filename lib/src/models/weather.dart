@@ -40,55 +40,54 @@ class Weather extends Equatable {
   final String sunRise;
   final String sunSet;
 
-  const Weather({
-    this.condition,
-    this.airPressure,
-    this.applicableDate,
-    this.created,
-    this.humidity,
-    this.id,
-    this.maxTemp,
-    this.minTemp,
-    this.predictability,
-    this.temp,
-    this.visibility,
-    this.weatherStateAbbr,
-    this.formattedCondition,
-    this.windDirection,
-    this.windDirectionCompass,
-    this.windSpeed,
-    this.lastUpdated,
-    this.locationId,
-    this.location,
-    this.lattLong,
-    this.sunRise,
-    this.sunSet
-  });
+  const Weather(
+      {this.condition,
+      this.airPressure,
+      this.applicableDate,
+      this.created,
+      this.humidity,
+      this.id,
+      this.maxTemp,
+      this.minTemp,
+      this.predictability,
+      this.temp,
+      this.visibility,
+      this.weatherStateAbbr,
+      this.formattedCondition,
+      this.windDirection,
+      this.windDirectionCompass,
+      this.windSpeed,
+      this.lastUpdated,
+      this.locationId,
+      this.location,
+      this.lattLong,
+      this.sunRise,
+      this.sunSet});
 
   @override
   List<Object> get props => [
-    condition,
-    airPressure,
-    applicableDate,
-    created,
-    humidity,
-    id,
-    maxTemp,
-    minTemp,
-    predictability,
-    temp,
-    visibility,
-    weatherStateAbbr,
-    formattedCondition,
-    windDirection,
-    windDirectionCompass,
-    windSpeed,
-    lastUpdated,
-    location,
-    lattLong,
-    sunSet,
-    sunRise
-  ];
+        condition,
+        airPressure,
+        applicableDate,
+        created,
+        humidity,
+        id,
+        maxTemp,
+        minTemp,
+        predictability,
+        temp,
+        visibility,
+        weatherStateAbbr,
+        formattedCondition,
+        windDirection,
+        windDirectionCompass,
+        windSpeed,
+        lastUpdated,
+        location,
+        lattLong,
+        sunSet,
+        sunRise
+      ];
 
 //  factory Weather.fromJson(Map<String, dynamic> json)
   /// модель ответа https://www.metaweather.com/api/location/2122265/
@@ -100,30 +99,34 @@ class Weather extends Equatable {
     final consolidatedWeather = json['consolidated_weather'][day];
 
     return Weather(
-      condition: _mapStringToWeatherCondition(
-          consolidatedWeather['weather_state_abbr']),
-      airPressure: consolidatedWeather['air_pressure'],
-      applicableDate: consolidatedWeather['applicable_date'],
-      created: consolidatedWeather['created'],
-      humidity: consolidatedWeather['humidity'],
-      id: consolidatedWeather['id'],
-      maxTemp: consolidatedWeather['max_temp'],
-      minTemp: consolidatedWeather['min_temp'],
-      predictability: consolidatedWeather['predictability'],
-      temp: consolidatedWeather['the_temp'],
-      visibility: consolidatedWeather['visibility'],
-      weatherStateAbbr: consolidatedWeather['weather_state_abbr'],
-      formattedCondition: consolidatedWeather['weather_state_name'],
-      windDirection: consolidatedWeather['wind_direction'],
-      windDirectionCompass: consolidatedWeather['wind_direction_compass'],
-      windSpeed: consolidatedWeather['wind_speed'],
-      lastUpdated: DateTime.now(),
-      locationId: json['woeid'] as int,
-      location: json['title'],
-      lattLong: json['latt_long'],
-      sunRise: json['sun_rise'],
-      sunSet:  json['sun_set']
-    );
+        condition: _mapStringToWeatherCondition(
+            consolidatedWeather['weather_state_abbr']),
+        airPressure: consolidatedWeather['air_pressure'],
+        applicableDate: consolidatedWeather['applicable_date'],
+        created: consolidatedWeather['created'],
+        humidity: consolidatedWeather['humidity'],
+        id: consolidatedWeather['id'],
+        maxTemp: consolidatedWeather['max_temp'],
+        minTemp: consolidatedWeather['min_temp'],
+        predictability: consolidatedWeather['predictability'],
+        temp: consolidatedWeather['the_temp'],
+        visibility: consolidatedWeather['visibility'],
+        weatherStateAbbr: consolidatedWeather['weather_state_abbr'],
+        formattedCondition: consolidatedWeather['weather_state_name'],
+        windDirection: consolidatedWeather['wind_direction'],
+        windDirectionCompass: consolidatedWeather['wind_direction_compass'],
+        windSpeed: consolidatedWeather['wind_speed'],
+        lastUpdated: DateTime.now(),
+        locationId: json['woeid'] as int,
+        location: json['title'],
+        lattLong: json['latt_long'],
+        sunRise: json['sun_rise'],
+        sunSet: json['sun_set']);
+  }
+
+  // возвращает прогноз на 6 дней
+  static List<Weather> fromJsonToForecastList(dynamic json) {
+    return [0, 1, 2, 3, 4, 5].map((x) => fromJson(json, day: x)).toList();
   }
 
   /// расшифровка аббревиатуры состояния погоды
