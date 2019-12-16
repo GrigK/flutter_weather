@@ -93,7 +93,7 @@ class Weather extends Equatable {
 //  factory Weather.fromJson(Map<String, dynamic> json)
   /// модель ответа https://www.metaweather.com/api/location/2122265/
   /// [day] - 0..5 прогноз может быть до 6 дней
-  static Weather fromJson(Map<String, dynamic> json, {int day = 0}) {
+  static Weather fromJson(dynamic json, {int day = 0}) {
     assert(day >= 0);
     day = day % 6; // в прогнозе только 6 дней
 
