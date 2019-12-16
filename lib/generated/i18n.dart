@@ -21,7 +21,7 @@ class S implements WidgetsLocalizations {
   @override
   TextDirection get textDirection => TextDirection.ltr;
 
-  String get appName => "Flutter";
+  String get appName => "Weather";
   String get titleHomePage => "Title home page";
 }
 
@@ -34,7 +34,7 @@ class $ru extends S {
   @override
   String get titleHomePage => "Название домашней страницы";
   @override
-  String get appName => "Флаттер";
+  String get appName => "Погода";
 }
 
 class $en extends S {
