@@ -127,6 +127,7 @@ class Weather extends Equatable {
   }
 
   /// расшифровка аббревиатуры состояния погоды
+  /// возвращает состояние погоды [WeatherCondition]
   static WeatherCondition _mapStringToWeatherCondition(String input) {
     WeatherCondition state;
     switch (input) {
