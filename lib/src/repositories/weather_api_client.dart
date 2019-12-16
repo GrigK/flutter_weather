@@ -14,7 +14,7 @@ class WeatherAPIClient {
   WeatherAPIClient({@required this.httpClient}) : assert(httpClient!= null);
 
   /// возвращает id первого найденного города по названию [city]
-  Future<int> getLocationIdFirst(String city) async {
+  Future<int> getFirstLocationId(String city) async {
     final locationUrl = '$_baseLocation$city';
     final locationResponse = await this.httpClient.get(locationUrl);
 
