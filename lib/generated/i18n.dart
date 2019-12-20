@@ -22,7 +22,12 @@ class S implements WidgetsLocalizations {
   TextDirection get textDirection => TextDirection.ltr;
 
   String get appName => "Weather";
+  String get hintFieldCity => "Moscow";
+  String get labelCity => "City";
+  String get titleCityPage => "Find City";
   String get titleHomePage => "Title home page";
+  String get titleWeatherPage => "Weather";
+  String updated(String ttt) => "Updated: ${ttt}";
 }
 
 class $ru extends S {
@@ -32,9 +37,19 @@ class $ru extends S {
   TextDirection get textDirection => TextDirection.ltr;
 
   @override
+  String get titleWeatherPage => "Погода";
+  @override
+  String get labelCity => "Город";
+  @override
   String get titleHomePage => "Название домашней страницы";
   @override
+  String get titleCityPage => "Найти город";
+  @override
   String get appName => "Погода";
+  @override
+  String get hintFieldCity => "Moscow";
+  @override
+  String updated(String ttt) => "Обновлено: ${ttt}";
 }
 
 class $en extends S {

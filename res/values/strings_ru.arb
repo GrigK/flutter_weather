@@ -1,4 +1,10 @@
 {
   "appName": "Погода",
-  "titleHomePage": "Название домашней страницы"
+  "titleHomePage": "Название домашней страницы",
+  "titleWeatherPage": "Погода",
+  "updated": "Обновлено: ${ttt}",
+  "titleCityPage": "Найти город",
+  "labelCity": "Город",
+  "hintFieldCity": "Moscow"
+
 }

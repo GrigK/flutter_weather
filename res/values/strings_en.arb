@@ -1,4 +1,10 @@
 {
   "appName": "Weather",
-  "titleHomePage": "Title home page"
+  "titleHomePage": "Title home page",
+  "titleWeatherPage": "Weather",
+  "updated": "Updated: ${ttt}",
+
+  "titleCityPage": "Find City",
+  "labelCity": "City",
+  "hintFieldCity": "Moscow"
 }
