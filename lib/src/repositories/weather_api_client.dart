@@ -52,9 +52,10 @@ class WeatherAPIClient {
       throw Exception('error getting weather for location');
     }
 
-    final weatherJson = jsonEncode(weatherResponse.body);
+    final dynamic weatherJson = jsonDecode(weatherResponse.body);
     // по умолчанию прогноз на сегодняшний день
     // если надо на другой, то надо выбирать параметр [day] 0..5
+
     return Weather.fromJson(weatherJson);
   }
 

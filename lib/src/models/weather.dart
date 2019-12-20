@@ -17,24 +17,23 @@ enum WeatherCondition {
 
 class Weather extends Equatable {
   final WeatherCondition condition;
-  final double airPressure;
-  final String applicableDate;
   final String created;
-  final int humidity;
-  final int id;
   final double maxTemp;
   final double minTemp;
-  final int predictability;
   final double temp;
-  final double visibility;
-  final String weatherStateAbbr;
   final String formattedCondition;
-  final double windDirection;
-  final String windDirectionCompass;
-  final double windSpeed;
   final DateTime lastUpdated;
   final int locationId;
   final String location;
+
+  final double airPressure;
+  final String applicableDate;
+  final int humidity;
+  final int predictability;
+  final double visibility;
+  final double windDirection;
+  final String windDirectionCompass;
+  final double windSpeed;
 
   final String lattLong;
   final String sunRise;
@@ -42,24 +41,22 @@ class Weather extends Equatable {
 
   const Weather(
       {this.condition,
-      this.airPressure,
-      this.applicableDate,
       this.created,
-      this.humidity,
-      this.id,
       this.maxTemp,
       this.minTemp,
-      this.predictability,
       this.temp,
-      this.visibility,
-      this.weatherStateAbbr,
       this.formattedCondition,
-      this.windDirection,
-      this.windDirectionCompass,
-      this.windSpeed,
       this.lastUpdated,
       this.locationId,
       this.location,
+      this.airPressure,
+      this.applicableDate,
+      this.humidity,
+      this.predictability,
+      this.visibility,
+      this.windDirection,
+      this.windDirectionCompass,
+      this.windSpeed,
       this.lattLong,
       this.sunRise,
       this.sunSet});
@@ -67,58 +64,54 @@ class Weather extends Equatable {
   @override
   List<Object> get props => [
         condition,
-        airPressure,
-        applicableDate,
         created,
-        humidity,
-        id,
         maxTemp,
         minTemp,
-        predictability,
         temp,
-        visibility,
-        weatherStateAbbr,
         formattedCondition,
+        lastUpdated,
+        location,
+        locationId,
+        airPressure,
+        applicableDate,
+        humidity,
+        predictability,
+        visibility,
         windDirection,
         windDirectionCompass,
         windSpeed,
-        lastUpdated,
-        location,
         lattLong,
         sunSet,
         sunRise
       ];
 
-//  factory Weather.fromJson(Map<String, dynamic> json)
   /// модель ответа https://www.metaweather.com/api/location/2122265/
   /// [day] - 0..5 прогноз может быть до 6 дней
   static Weather fromJson(dynamic json, {int day = 0}) {
     assert(day >= 0);
-    day = day % 6; // в прогнозе только 6 дней
+    day = day % 6; // в прогнозе только 6 дней если ичкать по location
 
     final consolidatedWeather = json['consolidated_weather'][day];
 
     return Weather(
         condition: _mapStringToWeatherCondition(
             consolidatedWeather['weather_state_abbr']),
-        airPressure: consolidatedWeather['air_pressure'],
-        applicableDate: consolidatedWeather['applicable_date'],
         created: consolidatedWeather['created'],
-        humidity: consolidatedWeather['humidity'],
-        id: consolidatedWeather['id'],
-        maxTemp: consolidatedWeather['max_temp'],
-        minTemp: consolidatedWeather['min_temp'],
-        predictability: consolidatedWeather['predictability'],
-        temp: consolidatedWeather['the_temp'],
-        visibility: consolidatedWeather['visibility'],
-        weatherStateAbbr: consolidatedWeather['weather_state_abbr'],
+        temp: consolidatedWeather['the_temp'] as double,
+        maxTemp: consolidatedWeather['max_temp'] as double,
+        minTemp: consolidatedWeather['min_temp'] as double,
         formattedCondition: consolidatedWeather['weather_state_name'],
-        windDirection: consolidatedWeather['wind_direction'],
-        windDirectionCompass: consolidatedWeather['wind_direction_compass'],
-        windSpeed: consolidatedWeather['wind_speed'],
         lastUpdated: DateTime.now(),
         locationId: json['woeid'] as int,
         location: json['title'],
+        airPressure: consolidatedWeather['air_pressure'] as double,
+        applicableDate: consolidatedWeather['applicable_date'],
+        humidity: consolidatedWeather['humidity'] as int,
+        predictability: consolidatedWeather['predictability'] as int,
+        visibility: consolidatedWeather['visibility'] as double,
+        windDirection: consolidatedWeather['wind_direction'] as double,
+        windDirectionCompass: consolidatedWeather['wind_direction_compass'],
+        windSpeed: consolidatedWeather['wind_speed'] as double,
         lattLong: json['latt_long'],
         sunRise: json['sun_rise'],
         sunSet: json['sun_set']);
