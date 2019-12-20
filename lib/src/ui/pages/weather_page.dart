@@ -5,7 +5,6 @@ import 'package:flutter_weather/generated/i18n.dart';
 import 'package:flutter_weather/src/blocks/theme_block.dart';
 
 import 'package:flutter_weather/src/blocks/weather/bloc.dart';
-import 'package:flutter_weather/src/repositories/repositories.dart';
 import 'package:flutter_weather/src/ui/widgets/widgets.dart';
 
 import './pages.dart';
